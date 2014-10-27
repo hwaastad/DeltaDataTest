@@ -18,14 +18,14 @@ import javax.persistence.PersistenceContext;
 @ApplicationScoped
 public class EntityManagerProducer {
 
-    @PersistenceContext(unitName = "DemoPU")
-    private EntityManager em;
-
-    @Produces
-    @Default
-    public EntityManager create() {
-        System.out.println("Producing entitymanager.....");
-        return em;
-    }
+//    @PersistenceContext(unitName = "DemoPU")
+//    private EntityManager em;
+//
+//    @Produces
+//    @Default
+//    public EntityManager create() {
+//        System.out.println("Producing entitymanager.....");
+//        return em;
+//    }
 
 }

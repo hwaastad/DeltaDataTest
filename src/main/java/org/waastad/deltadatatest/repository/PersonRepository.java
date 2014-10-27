@@ -17,7 +17,7 @@ import org.waastad.deltadatatest.producer.CrmEntityManagerResolver;
  * @author Helge Waastad <helge.waastad@waastad.org>
  */
 @Repository
-//@EntityManagerConfig(entityManagerResolver = CrmEntityManagerResolver.class, flushMode = FlushModeType.COMMIT)
+@EntityManagerConfig(entityManagerResolver = CrmEntityManagerResolver.class, flushMode = FlushModeType.COMMIT)
 public abstract class PersonRepository extends AbstractEntityRepository<Person, Long> {
 
 }

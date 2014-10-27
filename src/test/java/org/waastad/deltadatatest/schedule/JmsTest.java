@@ -6,6 +6,7 @@
 package org.waastad.deltadatatest.schedule;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
@@ -15,11 +16,13 @@ import javax.jms.Session;
 import org.apache.openejb.junit.jee.EJBContainerRule;
 import org.apache.openejb.junit.jee.InjectRule;
 import org.apache.openejb.junit.jee.config.PropertyFile;
+import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.waastad.deltadatatest.repository.PersonRepository;
 
 /**
  *
@@ -43,8 +46,11 @@ public class JmsTest {
     @Resource(name = "DemoCacheQueue")
     private Queue questionQueue;
 
+    @Inject
+    private PersonRepository personRepository;
+
     @Test
-    public void hello() throws Exception {
+    public void test10() throws Exception {
         final Connection connection = connectionFactory.createConnection();
         connection.start();
         final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -53,7 +59,7 @@ public class JmsTest {
         session.close();
         connection.close();
         Thread.sleep(5000);
-
+        Assert.assertTrue(personRepository.findAll().size() == 1);
     }
 
     private void sendText(String text, MessageProducer questions, Session session) throws JMSException {
