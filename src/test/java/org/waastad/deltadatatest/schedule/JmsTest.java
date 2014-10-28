@@ -40,7 +40,7 @@ public class JmsTest {
     public JmsTest() {
     }
 
-    @Resource
+    @Resource(name = "DemoConnectionFactory")
     private ConnectionFactory connectionFactory;
 
     @Resource(name = "DemoCacheQueue")

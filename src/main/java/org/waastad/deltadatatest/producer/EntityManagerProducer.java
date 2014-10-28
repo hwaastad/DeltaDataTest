@@ -6,10 +6,14 @@
 package org.waastad.deltadatatest.producer;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Default;
+import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 
 /**
  *
@@ -22,8 +26,8 @@ public class EntityManagerProducer {
     private EntityManager em;
 
     @Produces
-    @Default
-    public EntityManager create() {
+    @RequestScoped
+    protected EntityManager create() {
         System.out.println("Producing entitymanager.....");
         return em;
     }

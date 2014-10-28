@@ -30,6 +30,7 @@ public class JmsListener implements MessageListener {
     public void onMessage(Message msg) {
         System.out.println("We got a message.....");
         Person p = new Person("person: " + new Date().toString());
+        personRepository.findAll();
         personRepository.save(p);
     }
 

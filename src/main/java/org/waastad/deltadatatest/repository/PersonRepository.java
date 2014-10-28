@@ -5,12 +5,11 @@
  */
 package org.waastad.deltadatatest.repository;
 
-import javax.persistence.FlushModeType;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import org.apache.deltaspike.data.api.AbstractEntityRepository;
-import org.apache.deltaspike.data.api.EntityManagerConfig;
 import org.apache.deltaspike.data.api.Repository;
 import org.waastad.deltadatatest.entity.Person;
-import org.waastad.deltadatatest.producer.CrmEntityManagerResolver;
 
 /**
  *
@@ -19,5 +18,12 @@ import org.waastad.deltadatatest.producer.CrmEntityManagerResolver;
 @Repository
 //@EntityManagerConfig(entityManagerResolver = CrmEntityManagerResolver.class, flushMode = FlushModeType.COMMIT)
 public abstract class PersonRepository extends AbstractEntityRepository<Person, Long> {
+
+    @Inject
+    private EntityManager em;
+    
+    public void saveJpa(Person p){
+        em.persist(p);
+    }
 
 }
